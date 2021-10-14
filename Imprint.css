@@ -15,7 +15,7 @@
   max-width: 400px;
 }
 
-.imprint > a {
+.imprint > .fancy-button {
   margin-top: 3em;
   place-self: center;
 }
@@ -24,4 +24,13 @@
   color: transparent;
   background: white;
   user-select: none;
+}
+
+.sneaky-imprint-link {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: x-small;
+  margin: 1em;
+  color: gray;
 }

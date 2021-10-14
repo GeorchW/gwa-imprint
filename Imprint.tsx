@@ -48,7 +48,9 @@ export default function Imprint() {
             </CaptchaContext>
         </div>
 
-        <Link to="/" className="fancy-button">Back to Main Menu</Link>
+        <button onClick={() => window.history.back()} className="fancy-button">
+            Go Back
+        </button>
     </div>;
 }
 
