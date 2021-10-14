@@ -1,0 +1,27 @@
+.imprint {
+  display: grid;
+  grid-template-columns: auto;
+  place-content: center;
+  text-align: center;
+}
+
+.imprint-address {
+  display: grid;
+  text-align: left;
+  grid-template-columns: 1fr 1fr;
+}
+
+.imprint-captcha {
+  max-width: 400px;
+}
+
+.imprint > a {
+  margin-top: 3em;
+  place-self: center;
+}
+
+.imprint-censored {
+  color: transparent;
+  background: white;
+  user-select: none;
+}
