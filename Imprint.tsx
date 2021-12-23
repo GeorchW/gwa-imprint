@@ -17,39 +17,31 @@ const AddressContext = React.createContext<AddressInfo | null>(null);
 const SetAddressContext = React.createContext<(data: AddressInfo) => void>(() => undefined);
 
 export default function Imprint() {
-    return <div className="imprint">
-        <h1>Imprint</h1>
+    return <div className="imprint-columns">
+        <CaptchaContext>
+            <div className="imprint-address">
+                Verantwortlicher nach §5 TMG:
+                <br />
+                Georg Wicke-Arndt
+                <br />
+                <CensoredContent addressKey="address1" placeholder="Beispielstraße 123" />
+                <br />
+                <CensoredContent addressKey="address2" placeholder="12345 Neustadt" />
+                <br />
+                Tel.: <CensoredContent addressKey="tel" placeholder="0123 456789" />
+                <br />
+                E-Mail: <CensoredContent addressKey="email" placeholder="georg@example.com" />
+                <br />
 
-        <div className="imprint-address">
-            <CaptchaContext>
-                <p>
-                    Verantwortlicher nach §5 TMG:
-                    <br />
-                    Georg Wicke-Arndt
-                    <br />
-                    <CensoredContent addressKey="address1" placeholder="Beispielstraße 123" />
-                    <br />
-                    <CensoredContent addressKey="address2" placeholder="12345 Neustadt" />
-                    <br />
-                    Tel.: <CensoredContent addressKey="tel" placeholder="0123 456789" />
-                    <br />
-                    E-Mail: <CensoredContent addressKey="email" placeholder="georg@example.com" />
-                    <br />
-
-                </p>
-                <div className="imprint-captcha">
-                    <h3>Are you a robot?</h3>
-                    To prevent scraping, the adress data is encrypted.
-                    Please answer the following question to reveal it.
-                    <br />
-                    <AddressCaptcha data={captcha} />
-                </div>
-            </CaptchaContext>
-        </div>
-
-        <button onClick={() => window.history.back()} className="fancy-button">
-            Go Back
-        </button>
+            </div>
+            <div className="imprint-captcha">
+                <h3>Are you a robot?</h3>
+                To prevent scraping, the address data is encrypted.
+                Please answer the following question to reveal it.
+                <br />
+                <AddressCaptcha data={captcha} />
+            </div>
+        </CaptchaContext>
     </div>;
 }
 

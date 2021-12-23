@@ -1,24 +1,9 @@
-.imprint {
-  display: grid;
-  grid-template-columns: auto;
-  place-content: center;
-  text-align: center;
-}
-
-.imprint-address {
+.imprint-columns {
   display: grid;
   text-align: left;
   grid-template-columns: 1fr 1fr;
   gap: 1em;
-}
-
-.imprint-captcha {
-  max-width: 250px;
-}
-
-.imprint > button {
-  margin-top: 3em;
-  place-self: center;
+  align-items: center;
 }
 
 .imprint-censored {
