@@ -1,7 +1,7 @@
 /**
  * @jest-environment node
  */
-import { createCapcha, solveCaptcha } from "./emailCaptcha";
+import { createCapcha, solveCaptcha } from "./captchaLogic";
 
 describe("emailCaptcha.ts", () => {
     beforeAll(() => {
