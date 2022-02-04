@@ -14,7 +14,7 @@ describe("emailCaptcha.ts", () => {
     it("can create captchas and returns the answer again when solved correctly", async () => {
         const secret = "You've revealed the secret!";
 
-        const captcha = await createCapcha("What is twice the number of three squared?", "18", secret);
+        const captcha = await createCapcha("18", secret);
         const retrievedSecret = await solveCaptcha(captcha, "18");
 
         expect(retrievedSecret).toBe(secret);
@@ -23,7 +23,7 @@ describe("emailCaptcha.ts", () => {
     it("fails to decrypt without the right answer", async () => {
         const secret = "You've revealed the secret!";
 
-        const captcha = await createCapcha("What is twice the number of three squared?", "18", secret);
+        const captcha = await createCapcha("18", secret);
         const retrievedSecret = await solveCaptcha(captcha, "Keine Ahnung");
 
         expect(retrievedSecret).toBeNull();

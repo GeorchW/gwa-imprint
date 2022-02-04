@@ -1,5 +1,4 @@
 export interface CaptchaProtectedData {
-  question: string;
   cipherText: string;
   cipherSalt: string;
   cipherIv: string;
@@ -38,7 +37,7 @@ async function importKeyFromPassphrase(key: string, salt: Uint8Array) {
   return cipherKey;
 }
 
-export async function createCapcha(question: string, answer: string, message: string): Promise<CaptchaProtectedData> {
+export async function createCapcha(answer: string, message: string): Promise<CaptchaProtectedData> {
   const messageData = new TextEncoder().encode(message);
 
   const salt = await crypto.getRandomValues(new Uint8Array(16));
@@ -46,7 +45,7 @@ export async function createCapcha(question: string, answer: string, message: st
 
   const iv = crypto.getRandomValues(new Uint8Array(16));
   const ciphertext = await crypto.subtle.encrypt({ name: "AES-GCM", iv, length: 256 }, derivedKey, messageData);
-  return { question, cipherSalt: bufferToHex(salt), cipherIv: bufferToHex(iv), cipherText: bufferToHex(ciphertext) };
+  return { cipherSalt: bufferToHex(salt), cipherIv: bufferToHex(iv), cipherText: bufferToHex(ciphertext) };
 }
 
 export async function solveCaptcha(captcha: CaptchaProtectedData, answer: string): Promise<string | null> {
