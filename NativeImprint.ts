@@ -59,7 +59,7 @@ export function createImprintElement(language: "deDe" | "enUs" = "enUs"): HTMLDi
             + "To prevent scraping, the address data is encrypted. "
             + "Please answer the following question to reveal it.",
         deDe: "<h3>Bist du ein Roboter?</h3>"
-            + "Um Scraping zu verhindern sind die Adressdaten verschlüsselt."
+            + "Um Scraping zu verhindern sind die Adressdaten verschlüsselt. "
             + "Bitte beantworte die folgende Frage, um sie aufzudecken."
     }[language];
     captchaElement.append(br());
