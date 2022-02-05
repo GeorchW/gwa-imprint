@@ -1,4 +1,7 @@
+export type Language = "deDe" | "enUs";
+export type Question = { [key in Language]: string }
 export interface CaptchaProtectedData {
+  question: Question,
   cipherText: string;
   cipherSalt: string;
   cipherIv: string;
@@ -37,7 +40,7 @@ async function importKeyFromPassphrase(key: string, salt: Uint8Array) {
   return cipherKey;
 }
 
-export async function createCapcha(answer: string, message: string): Promise<CaptchaProtectedData> {
+export async function createCapcha(question: Question, answer: string, message: string): Promise<CaptchaProtectedData> {
   const messageData = new TextEncoder().encode(message);
 
   const salt = await crypto.getRandomValues(new Uint8Array(16));
@@ -45,7 +48,7 @@ export async function createCapcha(answer: string, message: string): Promise<Cap
 
   const iv = crypto.getRandomValues(new Uint8Array(16));
   const ciphertext = await crypto.subtle.encrypt({ name: "AES-GCM", iv, length: 256 }, derivedKey, messageData);
-  return { cipherSalt: bufferToHex(salt), cipherIv: bufferToHex(iv), cipherText: bufferToHex(ciphertext) };
+  return { question, cipherSalt: bufferToHex(salt), cipherIv: bufferToHex(iv), cipherText: bufferToHex(ciphertext) };
 }
 
 export async function solveCaptcha(captcha: CaptchaProtectedData, answer: string): Promise<string | null> {
